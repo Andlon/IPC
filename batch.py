@@ -7,8 +7,7 @@ from os.path import isfile, join
 import argparse
 
 parser = argparse.ArgumentParser(description='Batch proccess IPC sims.')
-parser.add_argument(
-    "--offline", help="run IPC without the viewer", action='store_true')
+parser.add_argument("--gui", help="run IPC with a viewer", action='store_true')
 args = parser.parse_args()
 
 inputFolderPath = os.path.realpath('.') + '/input/'
@@ -28,8 +27,9 @@ NTSetStr1 = 'export OMP_NUM_THREADS='
 # for Mac when CHOLMOD is compiled with default LAPACK and BLAS
 NTSetStr2 = 'export VECLIB_MAXIMUM_THREADS='
 
-for numOfThreads in ['1', '8', '12']:
-    inputFolderPath = os.path.realpath('.') + '/input/' + numOfThreads + '/'
+for example in ['cubeSlideTR']:
+    numOfThreads = '24'
+    inputFolderPath = os.path.realpath('.') + '/input/problems/' + example + '/'
     if(not os.path.isdir(inputFolderPath)):
         continue
     onlyfiles = [
@@ -40,7 +40,8 @@ for numOfThreads in ['1', '8', '12']:
         runCommand += NTSetStr1 + numOfThreads + '\n'
         runCommand += NTSetStr2 + numOfThreads + '\n'
         runCommand += "{} {} {} t{}".format(
-            progPath, '100' if args.offline else '10',
+            progPath, '10' if args.gui else '100',
             inputFolderPath + inputModelNameI, numOfThreads)
+        print("Running commands:\n" + runCommand)
         if subprocess.call([runCommand], shell=True):
             continue
