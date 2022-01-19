@@ -1,0 +1,15 @@
+shapes input 1
+input/tetMeshes/cube.msh 0 0.1 0  0 0 0  1 1 1 NBC -1 -1 -1  1 1 1  1.7034886229125867 0.14903594295024014 0.0
+
+stiffness 1e7 0.49
+
+selfFric 0.177
+
+ground 0.277 0
+
+zoom 0.3
+
+time 20 0.002
+
+timeIntegration NM
+dampingRatio 10
