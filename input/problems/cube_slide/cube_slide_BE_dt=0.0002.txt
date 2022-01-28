@@ -4,7 +4,7 @@ input/tetMeshes/cube.msh 0 0.1 0  0 0 0  1 1 1 NBC -1 -1 -1  1 1 1  1.7034886229
 stiffness 1e9 0.0
 selfFric 0.185
 ground 0.185 0
-time 10 0.02
+time 10 0.0002
 timeIntegration BE
 disableCout
 
